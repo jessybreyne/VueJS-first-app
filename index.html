@@ -9,8 +9,10 @@
 <body>
     <div id="app">
         <h2>{{title}}</h2>
-        <input type="text" placeholder="tâche à effectuer" v-model="task">
-        <button v-on:click="addTask">Ajouter</button>
+        <form v-on:submit.prevent="addTask">
+            <input type="text" placeholder="tâche à effectuer" v-model="task">
+            <button type="submit">Ajouter</button>
+        </form>
     </div>
     <script>
         new Vue({
