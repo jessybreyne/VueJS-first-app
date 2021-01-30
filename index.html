@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='vue2.6.12.js'></script>
+    <script src='vue2.6.12_dev.js'></script>
     <title>Hello Vue.js</title>
 </head>
 <body>
     <div id="app">
         {{course}} - {{date}}
+        <img v-bind:src=url />
     </div>
     <script>
         new Vue({
             el: '#app',
             data: {
                 course: 'Vue.js 2',
-                date: Date.now()
+                date: Date.now(),
+                url: 'https://vuejs.org/images/logo.png'
             }
         })
     </script>
