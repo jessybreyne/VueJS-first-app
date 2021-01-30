@@ -7,6 +7,17 @@
     <title>Hello Vue.js</title>
 </head>
 <body>
-    
+    <div id="app">
+        {{course}} - {{date}}
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                course: 'Vue.js 2',
+                date: Date.now()
+            }
+        })
+    </script>
 </body>
 </html>
