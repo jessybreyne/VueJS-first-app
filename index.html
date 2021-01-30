@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='vue2.6.12_dev.js'></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
     <title>Hello Vue.js</title>
 </head>
 <body>
@@ -14,11 +16,25 @@
             <button type="submit">Ajouter</button>
         </form>
         <ul>
-            <li v-for="task in tasks">{{task.description}}</li>
+            <li 
+                v-for="task in tasks"
+                v-bind:class="{completed: task.done}"
+                v-on:click="task.done = !task.done"
+            >
+                <span v-if="!task.isInEditMode">
+                    <i class="fas fa-edit" v-on:click="switchMode(task)"></i> 
+                    {{task.description}}
+                </span>
+
+                <span v-else>
+                    <i class="far fa-thumbs-up" v-on:click="switchMode(task)"></i>
+                    <input type="text" v-model="task.description">
+                </span>
+            </li>
         </ul>
     </div>
     <script>
-        new Vue({
+        var vm = new Vue({
             el: '#app',
             data: {
                title: "à faire",
@@ -30,10 +46,13 @@
                     this.tasks.push({
                         id: Date.now(), 
                         description: this.task, 
-                        done: false
+                        done: false,
+                        isInEditMode: false
                     });
-                    console.log("tasks", this.tasks);
-                    this.task = '';
+                    this.task = null;
+                },
+                switchMode: function(task){
+                    task.isInEditMode = !task.isInEditMode;
                 }
             }
         })
