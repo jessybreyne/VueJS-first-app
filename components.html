@@ -20,7 +20,14 @@
             template: '<div>Composant global</div>'
         })
 
-        var myCmp = { template: '<p>composant local</p>' }
+        var myCmp = { 
+            data: function() {
+                return {
+                    randomNumber: Math.floor(Math.random() * 10)
+                }
+            },
+            template: '<p>composant local : {{randomNumber}}</p>' 
+        }
 
         var vm = new Vue({
             el: "#app",
