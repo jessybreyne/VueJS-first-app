@@ -26,7 +26,12 @@
                     randomNumber: Math.floor(Math.random() * 10)
                 }
             },
-            template: '<p>composant local : {{randomNumber}}</p>' 
+            template: '<p>composant local : {{randomNumber}}<button v-on:click="refreshNumber">Rafraichir</button></p>',
+            methods: {
+                refreshNumber: function() {
+                    this.randomNumber = Math.floor(Math.random() * 10);
+                }
+            }
         }
 
         var vm = new Vue({
