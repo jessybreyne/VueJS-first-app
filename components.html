@@ -12,8 +12,8 @@
     <div id="app">
         <global-cmp></global-cmp>
 
-        <my-cmp></my-cmp>
-        <my-cmp></my-cmp>
+        <my-cmp v-bind:msg="message" color="red"></my-cmp>
+        <my-cmp msg="Texte en dur"></my-cmp>
     </div>
     <script>
         Vue.component('global-cmp',{
@@ -26,17 +26,21 @@
                     randomNumber: Math.floor(Math.random() * 10)
                 }
             },
-            template: '<p>composant local : {{randomNumber}}<button v-on:click="refreshNumber">Rafraichir</button></p>',
+		template: '<p>composant local : {{randomNumber}}<button v-on:click="refreshNumber">Rafraichir</button> passé par le parent : {{msg}} ma couleur est : {{color}}</p>',
             methods: {
                 refreshNumber: function() {
                     this.randomNumber = Math.floor(Math.random() * 10);
                 }
-            }
+            },
+	    props: ['msg', 'color']
         }
 
         var vm = new Vue({
             el: "#app",
-            components: { 'my-cmp': myCmp }
+            components: { 'my-cmp': myCmp },
+	    data: {
+                message: 'salut enfant'
+	    }
         })
     </script>
 </body>
