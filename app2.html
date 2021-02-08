@@ -12,10 +12,18 @@
     <div id="app">
        <h2>{{title}}</h2>
        <ul>
-           <li v-for="user in users">{{user.name}}</li>
+           <user-list v-bind:data="users"></user-list>
        </ul>
     </div>
     <script>
+
+        Vue.component('user-list', {
+            template: '<div>\
+               <ul><li v-for="user in data">{{user.name}}</li></ul>\
+               </div>',
+               props: ['data']
+        })
+
         var vm = new Vue({
             el: "#app",
             data: {
