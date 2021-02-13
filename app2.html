@@ -16,8 +16,9 @@
         </my-card>
         <hr>
         <h2>{{title}}</h2>
+        <hr>
         <ul>
-            <user-list v-bind:data="users"></user-list>
+            <user-list v-bind:data="users" v-bind:users-coming="usersWhoWillCome"></user-list>
        </ul>
     </div>
     <script>
@@ -29,10 +30,10 @@
             template: '<div>\
                <ul><li v-for="user in data"><user-details v-bind:usr="user" v-on:accept="registerUser(user)"></user-details></li></ul>\
                </div>',
-               props: ['data'],
+               props: ['data', 'usersComing'],
                methods: {
                    registerUser: function(user) {
-                       console.log(user);
+                       this.usersComing.push(user);
                    }
                }
         })
@@ -52,7 +53,8 @@
             data: {
                 title: 'Utilisateurs',
                 usersURL: 'https://jsonplaceholder.typicode.com/users',
-                users: []
+                users: [],
+                usersWhoWillCome: []
             },
             beforeCreate: function() {
                 console.log('beforeCreate') 
