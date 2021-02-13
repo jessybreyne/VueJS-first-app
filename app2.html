@@ -19,9 +19,14 @@
 
         Vue.component('user-list', {
             template: '<div>\
-               <ul><li v-for="user in data">{{user.name}}</li></ul>\
+               <ul><li v-for="user in data"><user-details v-bind:usr="user"></user-details></li></ul>\
                </div>',
                props: ['data']
+        })
+
+        Vue.component('user-details', {
+            template: '<div>id: {{usr.id}}, ville: {{usr.address.city}}, email: {{usr.email}}</div>',
+            props: ['usr']
         })
 
         var vm = new Vue({
