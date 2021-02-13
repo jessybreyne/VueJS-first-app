@@ -27,14 +27,24 @@
 
         Vue.component('user-list', {
             template: '<div>\
-               <ul><li v-for="user in data"><user-details v-bind:usr="user"></user-details></li></ul>\
+               <ul><li v-for="user in data"><user-details v-bind:usr="user" v-on:accept="registerUser(user)"></user-details></li></ul>\
                </div>',
-               props: ['data']
+               props: ['data'],
+               methods: {
+                   registerUser: function(user) {
+                       console.log(user);
+                   }
+               }
         })
 
         Vue.component('user-details', {
-            template: '<div>id: {{usr.id}}, ville: {{usr.address.city}}, email: {{usr.email}}</div>',
-            props: ['usr']
+            template: '<div>id: {{usr.id}}, ville: {{usr.address.city}}, email: {{usr.email}}<button v-on:click="acceptInvitation">Accept invit</button></div>',
+            props: ['usr'],
+            methods: {
+                acceptInvitation: function() {
+                    this.$emit('accept');
+                }
+            }
         })
 
         var vm = new Vue({
