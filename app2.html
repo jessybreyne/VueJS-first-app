@@ -20,7 +20,14 @@
         <ul>
             <user-list v-bind:data="users" v-bind:users-coming="usersWhoWillCome"></user-list>
        </ul>
+       <div v-for="user in usersWhoWillCome">
+           {{user.id}} - {{user.name}}
+       </div>
+        <div>
+            <pre>{{usersWhoWillCome}}</pre>
+        </div>
     </div>
+    
     <script>
         Vue.component('my-card', {
             template: '<div><slot name="cardheader">Contenu par défaut du slot</slot><slot name="cardbody">Contenu par défaut du slot</slot></div>'
