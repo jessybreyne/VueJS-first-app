@@ -10,12 +10,20 @@
 </head>
 <body>
     <div id="app">
-       <h2>{{title}}</h2>
-       <ul>
-           <user-list v-bind:data="users"></user-list>
+        <my-card>
+            <h3 slot="cardheader">Titre de la card</h3>
+            <div slot="cardbody">Body de la card</div>
+        </my-card>
+        <hr>
+        <h2>{{title}}</h2>
+        <ul>
+            <user-list v-bind:data="users"></user-list>
        </ul>
     </div>
     <script>
+        Vue.component('my-card', {
+            template: '<div><slot name="cardheader">Contenu par défaut du slot</slot><slot name="cardbody">Contenu par défaut du slot</slot></div>'
+        })
 
         Vue.component('user-list', {
             template: '<div>\
