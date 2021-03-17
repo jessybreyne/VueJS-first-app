@@ -11,17 +11,30 @@
 <body>
     <div id="app">
         {{ this.waysToContact }}
+
+        <div>
+            S'inscrire à une newsletter : <input type="text" placeholder="Votre adresse email" v-model="emailForNewsletter">
+            <button v-bind:disabled="emailAdressInvalid">Inscription</button>
+        </div>
     </div>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
                 email: 'bill@ms.com',
-                phone: '06 07 08 09 10'
+                phone: '06 07 08 09 10',
+                emailForNewsletter: ''
             },
             computed: {
                 waysToContact: function() {
                     return 'email : ' + this.email + ' tel : ' + this.phone;
+                },
+                emailAdressInvalid: function() {
+                    if(this.emailForNewsletter.lenght < 2 || this.emailForNewsletter.indexOf('@') === -1 || this.emailForNewsletter.indexOf('.') === -1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             }
         })
