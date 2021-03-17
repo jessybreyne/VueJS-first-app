@@ -16,6 +16,14 @@
             S'inscrire à une newsletter : <input type="text" placeholder="Votre adresse email" v-model="emailForNewsletter">
             <button v-bind:disabled="emailAdressInvalid">Inscription</button>
         </div>
+
+        <div>
+            <h2>Votre avis</h2>
+            <div>
+                <input type="text" placeholder="Votre avis" v-model="opinion">
+                {{ opinionResult }}
+            </div>
+        </div>
     </div>
     <script>
         var vm = new Vue({
@@ -23,7 +31,9 @@
             data: {
                 email: 'bill@ms.com',
                 phone: '06 07 08 09 10',
-                emailForNewsletter: ''
+                emailForNewsletter: '',
+                opinion: '',
+                opinionResult: ''
             },
             computed: {
                 waysToContact: function() {
@@ -34,6 +44,15 @@
                         return true;
                     } else {
                         return false;
+                    }
+                }
+            },
+            watch: {
+                opinion: function(newValue) {
+                    if(newValue.indexOf('azerty') !== -1){
+                        this.opinionResult = 'Restez poli !';
+                    } else {
+                        this.opinionResult = '';
                     }
                 }
             }
