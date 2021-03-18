@@ -24,6 +24,12 @@
                 {{ opinionResult }}
             </div>
         </div>
+
+        <div>
+            <h2>Chercher un utilisateur Github</h2>
+            <input type="text" v-model="githubUser">
+            {{ githubUserResult }}
+        </div>
     </div>
     <script>
         var vm = new Vue({
@@ -33,7 +39,9 @@
                 phone: '06 07 08 09 10',
                 emailForNewsletter: '',
                 opinion: '',
-                opinionResult: ''
+                opinionResult: '', 
+                githubUser: '',
+                githubUserResult: ''
             },
             computed: {
                 waysToContact: function() {
@@ -54,6 +62,11 @@
                     } else {
                         this.opinionResult = '';
                     }
+                },
+                githubUser: function(username) {
+                    fetch('https://api.github.com/users/' + username)
+                    .then(response => response.json())
+                    .then(data => console.log(data));
                 }
             }
         })
