@@ -1,7 +1,7 @@
 <template>
-    <div class="user-details">
-        id: {{usr.id}}, ville: {{usr.address.city}}, email: {{usr.email}} <br>
-        <button v-on:click="acceptInvitation">Accept invit</button>
+    <div>
+        <h1>Détails de l'utilisateur {{this.$route.params.id}}</h1>
+        <p><router-link to="/users">retour</router-link></p>
     </div>
 </template>
 
@@ -13,21 +13,6 @@ export default {
         acceptInvitation: function() {
             this.$emit('accept');
         }
-    },
-    data: function() {
-        return {
-            usersWhoWillCome: []
-        }
     }
 }
 </script>
-
-<style scoped>
-.user-details {
-    border: 2px solid gray;
-    margin: 10px;
-    padding: 15px;
-    width: 250px;
-    float: left;
-}
-</style>

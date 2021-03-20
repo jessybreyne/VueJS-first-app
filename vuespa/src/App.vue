@@ -1,6 +1,6 @@
 <template>
   <div>
-    <user-list v-bind:data="users" v-bind:users-coming="usersWhoWillCome"></user-list>
+    <router-view v-bind:data="users" v-bind:users-coming="usersWhoWillCome"></router-view>
     <div v-for="user in usersWhoWillCome" :key="user.id">
       {{user.id}} - {{user.name}}
     </div>
@@ -8,13 +8,8 @@
 </template>
 
 <script>
-import UserList from './UserList.vue'
-
 export default {
   name: 'app',
-  components: { 
-    'user-list' : UserList 
-  },
   data () {
     return {
       usersURL: 'https://jsonplaceholder.typicode.com/users',
